@@ -4,8 +4,6 @@ Proyecto Semestral EP2 — DSY1103 — RedSaludPatagónica
 # RedSaludPatagónica — DSY1103 Desarrollo FullStack 1
 
 ## Descripción
-[Descripción breve del dominio y el problema que resuelve]
-
 RedSaludPatagónica es una organización privada sin fines de lucro que gestiona una red de postas
 rurales y centros de salud familiar (CESFAM) en territorios aislados de las provincias de Chiloé y
 Palena. Opera 8 postas rurales en localidades de difícil acceso como Melinka, Raúl Marín
@@ -17,9 +15,9 @@ plataforma que coordine las consultas remotas, el stock de medicamentos en cada 
 de pacientes cuando es necesario (en avioneta o lancha) y el registro de las fichas clínicas de una
 población rural dispersa.
 
-El problema a resolver es la gestión de salud de personas en condición de vulnerabilidad en
-territorios donde la conectividad a internet es intermitente. Muchas de estas personas que no cuentan
-con RUT o tienen documentación incompleta son adultos mayores, pertenecientes a comunidades indígenas huilliche o pescadores artesanales.
+El sistema resuelve la dificultad de acceso a la atención médica para adultos mayores
+y personas que no cuentan con RUT, permitiendo su registro mediante datos alternativos como nombre, 
+dirección y fecha de nacimiento.
 
 
 ## Equipo
@@ -30,10 +28,21 @@ con RUT o tienen documentación incompleta son adultos mayores, pertenecientes a
 
 
 ## Microservicios Implementados
-| # | Microservicio | Puerto | Descripción |
-|---|---------------|--------|-------------|
-| 1 | ms-[nombre]   | 8081   | ...         |
-| 2 | ms-[nombre]   | 8082   | ...         |
+| # | Microservicio      | Puerto | Descripción                                                                                                   |
+|---|--------------------|--------|---------------------------------------------------------------------------------------------------------------|
+| 1 | ms-profesionales   | 8081   | Profesionales capacitados para asistir a los pacientes de manera exitosa.                                     |
+| 2 | ms-pacientes       | 8082   | Usuarios del centro de salud que necesitan de los servicios profesionales.                                    |
+| 2 | ms-postas          | 8083   | Centro de salud con implementaciones necesarias e insumos para la comunidad.                                  |
+| 2 | ms-recetas         | 8084   | Preinscripciones en base a consultas médicas enfocadas en solventar problemáticas.                            |
+| 2 | ms-consultas       | 8085   | Registro de consultas médicas, presenciales y remotas para los pacientes.                                     |
+| 2 | ms-registro-fichas | 8086   | Fichas clínicas con información de vital importancia, junto con antecedentes médicos.                         |
+| 2 | ms-derivaciones    | 8087   | Traslado a centros clínicos de mayor complejidad para atender situaciones de riesgo vital.                    |
+| 2 | ms-traslados       | 8088   | Medio de traslado para los pacientes y rutas designadas para llegar al destino (avioneta, lancha, ambulancia) |
+| 2 | ms-programas       | 8089   | Programas preventivos eventuales para cada situación de salubridad (vacunas, controles, etc).                 |
+| 2 | ms-alertas         | 8090   | Alertas vitales en epidemias, stock crítico, situaciones de riesgo vital y vencimiento de medicamentos.       |
+| 2 | ms-farmacias       | 8091   | Centro de distribución de medicamentos para los locatarios en base a ms-recetas.                              |
+
+
 
 ## Tecnologías Utilizadas
 - Java 17 / Spring Boot 3.x
