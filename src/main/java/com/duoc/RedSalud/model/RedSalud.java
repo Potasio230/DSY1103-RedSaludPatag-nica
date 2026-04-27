@@ -7,32 +7,33 @@ import java.util.Date;
 @Entity
 @Table(name = "PACIENTES")
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 
 public class RedSalud {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
+    @Column(name = "nombre", nullable = false, length = 100)
     private String nombre;
+    @Column(name = "direccion", nullable = false)
     private String direccion;
+    @Column(name = "fechaNacimiento", nullable = false)
     private Date fechaNacimiento;
 
     public RedSalud() {
     }
 
-    public RedSalud(int id, String nombre, String direccion, Date fechaNacimiento) {
+    public RedSalud(Long id, String nombre, String direccion, Date fechaNacimiento) {
         this.id = id;
         this.nombre = nombre;
         this.direccion = direccion;
         this.fechaNacimiento = fechaNacimiento;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -60,5 +61,4 @@ public class RedSalud {
         this.fechaNacimiento = fechaNacimiento;
     }
 }
-
 
