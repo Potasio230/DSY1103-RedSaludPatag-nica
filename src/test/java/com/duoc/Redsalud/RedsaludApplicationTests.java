@@ -1,10 +1,10 @@
-package com.duoc.Redsalud;
+package com.duoc.RedSalud;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class RedsaludApplicationTests {
+class RedSaludApplicationTests {
 
 	@Test
 	void contextLoads() {
