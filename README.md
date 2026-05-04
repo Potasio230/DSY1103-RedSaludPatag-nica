@@ -28,19 +28,19 @@ dirección y fecha de nacimiento.
 
 
 ## Microservicios Implementados
-| # | Microservicio      | Puerto | Descripción                                                                                                   |
-|---|--------------------|--------|---------------------------------------------------------------------------------------------------------------|
-| 1 | ms-profesionales   | 8081   | Profesionales capacitados para asistir a los pacientes de manera exitosa.                                     |
-| 2 | ms-pacientes       | 8082   | Usuarios del centro de salud que necesitan de los servicios profesionales.                                    |
-| 2 | ms-postas          | 8083   | Centro de salud con implementaciones necesarias e insumos para la comunidad.                                  |
-| 2 | ms-recetas         | 8084   | Preinscripciones en base a consultas médicas enfocadas en solventar problemáticas.                            |
-| 2 | ms-consultas       | 8085   | Registro de consultas médicas, presenciales y remotas para los pacientes.                                     |
-| 2 | ms-registro-fichas | 8086   | Fichas clínicas con información de vital importancia, junto con antecedentes médicos.                         |
-| 2 | ms-derivaciones    | 8087   | Traslado a centros clínicos de mayor complejidad para atender situaciones de riesgo vital.                    |
-| 2 | ms-traslados       | 8088   | Medio de traslado para los pacientes y rutas designadas para llegar al destino (avioneta, lancha, ambulancia) |
-| 2 | ms-programas       | 8089   | Programas preventivos eventuales para cada situación de salubridad (vacunas, controles, etc).                 |
-| 2 | ms-alertas         | 8090   | Alertas vitales en epidemias, stock crítico, situaciones de riesgo vital y vencimiento de medicamentos.       |
-| 2 | ms-farmacias       | 8091   | Centro de distribución de medicamentos para los locatarios en base a ms-recetas.                              |
+| #  | Microservicio      | Puerto | Descripción                                                                                                   |
+|----|--------------------|--------|---------------------------------------------------------------------------------------------------------------|
+| 1  | ms-profesionales   | 8081   | Profesionales capacitados para asistir a los pacientes de manera exitosa.                                     |
+| 2  | ms-pacientes       | 8082   | Usuarios del centro de salud que necesitan de los servicios profesionales.                                    |
+| 3  | ms-postas          | 8083   | Centro de salud con implementaciones necesarias e insumos para la comunidad.                                  |
+| 4  | ms-recetas         | 8084   | Preinscripciones en base a consultas médicas enfocadas en solventar problemáticas.                            |
+| 5  | ms-consultas       | 8085   | Registro de consultas médicas, presenciales y remotas para los pacientes.                                     |
+| 6  | ms-registro-fichas | 8086   | Fichas clínicas con información de vital importancia, junto con antecedentes médicos.                         |
+| 7  | ms-derivaciones    | 8087   | Traslado a centros clínicos de mayor complejidad para atender situaciones de riesgo vital.                    |
+| 8  | ms-traslados       | 8088   | Medio de traslado para los pacientes y rutas designadas para llegar al destino (avioneta, lancha, ambulancia) |
+| 9  | ms-programas       | 8089   | Programas preventivos eventuales para cada situación de salubridad (vacunas, controles, etc).                 |
+| 10 | ms-alertas         | 8090   | Alertas vitales en epidemias, stock crítico, situaciones de riesgo vital y vencimiento de medicamentos.       |
+| 11 | ms-farmacias       | 8091   | Centro de distribución de medicamentos para los locatarios en base a ms-recetas.                              |
 
 
 
