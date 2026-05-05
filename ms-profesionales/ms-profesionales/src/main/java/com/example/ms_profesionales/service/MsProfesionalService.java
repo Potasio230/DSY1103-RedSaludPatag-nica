@@ -41,6 +41,6 @@ public class MsProfesionalService {
     }
 
     public void eliminar(Long id){
-        repository.deleteById(id)
+        repository.deleteById(id);
     }
 }
