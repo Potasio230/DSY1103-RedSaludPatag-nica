@@ -31,7 +31,4 @@ public class MsProfesional {
     @Column(name = "telefono", length = 20)
     private String telefono;
 
-
-
-
 }
