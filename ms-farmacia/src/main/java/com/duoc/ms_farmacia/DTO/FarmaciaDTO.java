@@ -1,4 +1,5 @@
-package com.duoc.ms_consultas.DTO;
+package com.duoc.ms_farmacia.DTO;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,6 +19,5 @@ public class FarmaciaDTO {
     private String proveedor;
     private String telefonoProveedor;
     private String horarioFarmacia;
-
 
 }
