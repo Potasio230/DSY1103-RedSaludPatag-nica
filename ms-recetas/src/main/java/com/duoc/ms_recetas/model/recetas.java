@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 @AllArgsConstructor
 
 public class recetas {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -36,5 +37,4 @@ public class recetas {
 
     @Column(name = "indicacionesMedicas", nullable = false, length = 100)
     private String indicacionesMedicas;
-
 }

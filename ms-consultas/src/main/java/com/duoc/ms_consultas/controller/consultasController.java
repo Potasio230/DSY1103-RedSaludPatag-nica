@@ -13,14 +13,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/redsalud/consultas")
+@RequestMapping("/redsalud/v1/consultas")
 public class consultasController {
 
     private final consultasService service;
-
     public consultasController(consultasService service){
         this.service = service;
     }
+
 
     @GetMapping
     public ResponseEntity<?> listarConsultas(){
