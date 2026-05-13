@@ -24,7 +24,7 @@ public class FarmaciaDTO {
     @Size(min = 2, max = 50)
     private String encargadoNombre;
 
-    @NotNull(message = "El télefono de la farmacia es obligatorio")
+    @NotBlank(message = "El télefono de la farmacia es obligatorio")
     private String telefonoFarmacia;
 
     @NotBlank(message = "El proveedor es obligatorio")

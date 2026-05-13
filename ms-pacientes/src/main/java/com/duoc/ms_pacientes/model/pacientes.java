@@ -26,7 +26,7 @@ public class pacientes {
     @Column(name = "residencia", nullable = false, length = 200)
     private String residencia;
 
-    @JsonFormat(pattern = "dd-mm-yyyy")
+    @JsonFormat(pattern = "dd-MM-yyyy")
     private LocalDate fechaNacimiento;
 
     @Column(name = "email", nullable = false, length = 100)

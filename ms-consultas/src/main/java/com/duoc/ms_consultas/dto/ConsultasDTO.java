@@ -22,7 +22,7 @@ public class ConsultasDTO {
     @Size(min = 2, max = 50, message = "El nombre del paciente debe tener entre 2 y 50 caracteres")
     private String nombrePaciente;
 
-    @NotBlank(message = "La ficha del paciente es obligatoria")
+    @NotNull(message = "La ficha del paciente es obligatoria")
     @Positive(message = "La ficha del paciente debe ser positiva")
     private Integer fichaPaciente;
 
@@ -30,7 +30,7 @@ public class ConsultasDTO {
     @Size(min = 2, max = 50, message = "El nombre del profesional debe tener entre 2 y 50 caracteres")
     private String nombreProfesional;
 
-    @NotBlank(message = "La ficha del profesional es obligatorio")
+    @NotNull(message = "La ficha del profesional es obligatorio")
     @Positive(message = "La ficha del profesional debe ser positiva")
     private Integer fichaProfesional;
 

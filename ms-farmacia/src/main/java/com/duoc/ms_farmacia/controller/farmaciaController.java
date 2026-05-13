@@ -1,8 +1,10 @@
 package com.duoc.ms_farmacia.controller;
 
+import com.duoc.ms_farmacia.dto.FarmaciaDTO;
 import com.duoc.ms_farmacia.model.farmacia;
 import com.duoc.ms_farmacia.service.farmaciaService;
 
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,8 +28,7 @@ public class farmaciaController {
     public ResponseEntity<?> listarMedicamentos(){
         try {
             List<farmacia> pacientes = service.listarMedicamentos();
-            return ResponseEntity.ok()
-                    .body("Medicamentos listados correctamente");
+            return ResponseEntity.ok(pacientes);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body("Error al listar los medicamentos");
@@ -51,37 +52,36 @@ public class farmaciaController {
     }
 
     @PostMapping
-    public ResponseEntity<?> crear(@RequestBody farmacia farmacia){
+    public ResponseEntity<?> crear(@Valid @RequestBody FarmaciaDTO farmaciaDTO) {
         try {
-            if (farmacia.getMedicamentos() == null ||
-                    farmacia.getStockMedicamentos() == null) {
-
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                        .body("Faltan rellenar campos obligatorios");
-            }
-
-            farmacia nuevoMedicamento = service.crear(farmacia);
-
-            return ResponseEntity.status(HttpStatus.CREATED)
-                    .body("Medicamento ingresado exitosamente");
-
+            farmacia nuevoMedicamento = service.crear(farmaciaDTO);
+            return ResponseEntity.status(HttpStatus.CREATED).body(nuevoMedicamento);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body("Error al ingresar el medicamento");
         }
     }
 
+
+
     @PutMapping("/{id}")
-    public ResponseEntity<?> actualizar(@PathVariable Long id, @RequestBody farmacia farmacia){
-        farmacia actualizado = service.actualizar(id, farmacia);
+    public ResponseEntity<?> actualizar(@PathVariable Long id, @Valid @RequestBody FarmaciaDTO farmaciaDTO){
+        try {
+            farmacia actualizado = service.actualizar(id, farmaciaDTO);
 
-        if (actualizado == null){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body("No se encontro el ID de la farmacia para actualizar los datos");
+            if (actualizado == null){
+                return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                        .body("No se encontro el ID de la farmacia para actualizar los datos");
+            }
+
+            return ResponseEntity.ok().body(actualizado);
+
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error al actualizar el medicamento");
         }
-
-        return ResponseEntity.ok().body(actualizado);
     }
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> eliminar(@PathVariable Long id){

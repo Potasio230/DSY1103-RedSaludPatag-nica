@@ -18,7 +18,7 @@ public class farmacia {
     private String medicamentos;
 
     @Column(name = "stockMedicamentos", nullable = false)
-    private Integer stockMedicamentos;
+    private int stockMedicamentos;
 
     @Column(name = "encargadoNombre", nullable = false, length = 100)
     private String encargadoNombre;

@@ -1,8 +1,10 @@
 package com.duoc.ms_consultas.controller;
 
+import com.duoc.ms_consultas.dto.ConsultasDTO;
 import com.duoc.ms_consultas.model.consultas;
 import com.duoc.ms_consultas.service.consultasService;
 
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -51,32 +53,16 @@ public class consultasController {
     }
 
     @PostMapping
-    public ResponseEntity<?> crear(@RequestBody consultas consulta){
+    public ResponseEntity<?> crear(@Valid @RequestBody ConsultasDTO consultaDTO){
         try {
-
-            if (consulta == null ||
-                    consulta.getNombrePaciente() == null ||
-                    consulta.getFichaPaciente() == null ||
-                    consulta.getNombreProfesional() == null ||
-                    consulta.getFichaProfesional() == null ||
-                    consulta.getModalidad() == null ||
-                    consulta.getFechaConsulta() == null ||
-                    consulta.getRazonConsulta() == null) {
-
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                        .body("Faltan rellenar campos obligatorios");
-            }
-
-            consultas nuevaConsulta = service.crear(consulta);
-
-            return ResponseEntity.status(HttpStatus.CREATED)
-                    .body(nuevaConsulta);
-
+            consultas nuevaConsulta = service.crear(consultaDTO);
+            return ResponseEntity.status(HttpStatus.CREATED).body(nuevaConsulta);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body("Error al agendar la consulta");
         }
     }
+
 
     @PutMapping("/{id}")
     public ResponseEntity<?> actualizar(@PathVariable Long id, @RequestBody consultas consulta){

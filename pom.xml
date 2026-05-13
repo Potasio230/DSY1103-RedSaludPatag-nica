@@ -25,6 +25,7 @@
 		<module>ms-farmacia</module>
 		<module>ms-pacientes</module>
 		<module>ms-profesionales</module>
+		<module>ms-programas</module>
 		<module>ms-recetas</module>
 		<module>ms-registro_fichas</module>
 	</modules>

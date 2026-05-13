@@ -1,10 +1,10 @@
-package com.duoc.ms_consultas;
+package com.duoc.ms_registro_fichas;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class MsConsultasApplicationTests {
+class MsRegistroFichasApplicationTests {
 
 	@Test
 	void contextLoads() {

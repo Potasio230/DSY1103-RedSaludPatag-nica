@@ -65,7 +65,6 @@ public class pacientesController {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                         .body("Faltan rellenar campos obligatorios");
             }
-
             pacientes nuevoPaciente = service.crear(paciente);
 
             return ResponseEntity.status(HttpStatus.CREATED)

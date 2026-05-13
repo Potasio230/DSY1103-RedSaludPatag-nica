@@ -1,5 +1,6 @@
 package com.duoc.ms_consultas.service;
 
+import com.duoc.ms_consultas.dto.ConsultasDTO;
 import com.duoc.ms_consultas.model.consultas;
 import com.duoc.ms_consultas.repository.consultasRepository;
 import org.springframework.stereotype.Service;
@@ -15,9 +16,20 @@ public class consultasService {
         this.repository = repository;
     }
 
-    public consultas crear(consultas consultas) {
-        return repository.save(consultas);
+    public consultas crear(ConsultasDTO dto) {
+        consultas nueva = new consultas();
+        nueva.setId(dto.getId());
+        nueva.setNombrePaciente(dto.getNombrePaciente());
+        nueva.setFichaPaciente(dto.getFichaPaciente());
+        nueva.setNombreProfesional(dto.getNombreProfesional());
+        nueva.setFichaProfesional(dto.getFichaProfesional());
+        nueva.setRazonConsulta(dto.getRazonConsulta());
+        nueva.setModalidad(dto.getModalidad());
+        nueva.setFechaConsulta(dto.getFechaConsulta());
+
+        return repository.save(nueva);
     }
+
 
     public List<consultas> listarConsultas() {
         return repository.findAll();
