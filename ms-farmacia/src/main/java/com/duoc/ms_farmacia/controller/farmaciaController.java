@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/redsalud/farmacia")
+@RequestMapping("/redsalud/v1/farmacia")
 public class farmaciaController {
 
     private final farmaciaService service;

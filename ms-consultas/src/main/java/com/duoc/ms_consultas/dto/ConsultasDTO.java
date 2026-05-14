@@ -14,8 +14,6 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class ConsultasDTO {
 
-    @NotNull
-    @Positive
     private Long id;
 
     @NotBlank(message =  "El nombre del paciente es obligatorio")

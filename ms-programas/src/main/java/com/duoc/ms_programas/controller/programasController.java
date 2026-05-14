@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/redsalud/programas")
+@RequestMapping("/redsalud/v1/programas")
 public class programasController {
 
     private final programasService service;
