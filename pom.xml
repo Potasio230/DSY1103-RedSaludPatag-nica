@@ -12,8 +12,10 @@
 	<groupId>com.duoc</groupId>
 	<artifactId>redsaludpatagonica</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+
+	<packaging>pom</packaging>
+
 	<name>RedSaludPatagonica</name>
-	<description>Proyecto semestral</description>
 
 
 	<properties>
@@ -27,7 +29,6 @@
 		<module>ms-profesionales</module>
 		<module>ms-programas</module>
 		<module>ms-recetas</module>
-		<module>ms-registro_fichas</module>
 	</modules>
 
 	<dependencies>
