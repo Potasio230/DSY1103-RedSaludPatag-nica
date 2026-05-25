@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
+@Service // Marca la clase como servicio debido a que contiene la lógica de negocio
 public class programasService {
 
     private final programasRepository repository;
@@ -20,7 +20,7 @@ public class programasService {
     }
 
     public List<programas> listarTodos() {
-        return repository.findAll();
+        return repository.findAll(); // Devuelve todos los programas
     }
 
     public programas buscarPorId(Long id) {
@@ -31,16 +31,17 @@ public class programasService {
         programas p = buscarPorId(id);
 
         if (p == null) {
-            return null;
+            return null; // Si no existe, retorna un null
         }
 
+        // Actualiza campos de la entidad existente
         p.setNombrePrograma(programas.getNombrePrograma());
         p.setNombreEncargado(programas.getNombreEncargado());
         p.setTipoPrograma(programas.getTipoPrograma());
         p.setLugarPrograma(programas.getLugarPrograma());
         p.setFechaPrograma(programas.getFechaPrograma());
 
-        return repository.save(p);
+        return repository.save(p); // Guarda los cambios realizados
     }
 
     public boolean eliminar(Long id) {

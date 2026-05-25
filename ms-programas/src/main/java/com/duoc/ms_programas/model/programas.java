@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class programas {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // ID autoincremental
     private Long id;
 
     private String nombrePrograma;

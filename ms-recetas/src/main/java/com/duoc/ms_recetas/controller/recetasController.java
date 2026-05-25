@@ -11,11 +11,17 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+//MAPEO DE ENDPOINTS:
+//GET    http://localhost:8083/redsalud/v1/recetas               -> listar todas
+//GET    http://localhost:8083/redsalud/v1/recetas/{id}          -> obtener una (404 si no existe)
+//POST    http://localhost:8083/redsalud/v1/recetas              -> crear (201 Created)
+//PUT     http://localhost:8083/redsalud/v1/recetas/{id}         -> actualizar
+//DELETE  http://localhost:8083/redsalud/v1/recetas/{id}         -> eliminar (204 No Content)
 @RestController
 @RequestMapping("/redsalud/v1/recetas")
 public class recetasController {
 
-    private recetasService service;
+    private recetasService service; // Se define la ruta base para todos los endpoints de este controlador
 
     public recetasController(recetasService service) {
         this.service = service;
@@ -24,25 +30,25 @@ public class recetasController {
     @GetMapping
     public ResponseEntity<?> listarRecetas() {
         try {
-            List<recetas> pacientes = service.listarRecetas();
+            List<recetas> pacientes = service.listarRecetas(); // Llama al servicio para obtener las recetas
             return ResponseEntity.ok()
-                    .body("Recetas listadas correctamente");
+                    .body("Recetas listadas correctamente"); // Devuelve mensaje de éxito
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("Error al listar las recetas");
+                    .body("Error al listar las recetas"); // Devuelve mensaje de error
         }
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<?> buscarPorId(@PathVariable Long id){
         try {
-            recetas recetas = service.buscarPorId(id);
+            recetas recetas = service.buscarPorId(id); // Busca una receta por ID
 
             if (recetas == null){
                 return ResponseEntity.status(HttpStatus.NOT_FOUND)
                         .body("No se encontro el ID de la receta medica");
             }
-            return ResponseEntity.ok().body(recetas);
+            return ResponseEntity.ok().body(recetas); // Devuelve el objeto encontrado
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body("Error del servidor");
@@ -77,7 +83,7 @@ public class recetasController {
 
     @PutMapping("/{id}")
     public ResponseEntity<?> actualizar(@PathVariable Long id, @RequestBody recetas recetas){
-        recetas actualizado = service.actualizar(id, recetas);
+        recetas actualizado = service.actualizar(id, recetas); // Actualiza campos de la entidad
 
         if (actualizado == null){
             return ResponseEntity.status(HttpStatus.NOT_FOUND)

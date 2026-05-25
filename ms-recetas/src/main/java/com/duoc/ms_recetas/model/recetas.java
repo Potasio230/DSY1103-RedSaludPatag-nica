@@ -14,7 +14,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public class recetas {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // ID autoincremental
     private Long id;
 
     @Column(name = "fechaEmision", nullable = false)

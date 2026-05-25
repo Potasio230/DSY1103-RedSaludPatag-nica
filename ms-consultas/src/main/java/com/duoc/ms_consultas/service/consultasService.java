@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
+@Service // Marca la clase como servicio debido a que contiene la lógica de negocio
 public class consultasService {
 
     private final consultasRepository repository;
@@ -17,6 +17,7 @@ public class consultasService {
     }
 
     public consultas crear(ConsultasDTO dto) {
+        // Mapeo manual del DTO a la entidad que asegura que solo campos válidos sean persistentes
         consultas nueva = new consultas();
         nueva.setId(dto.getId());
         nueva.setNombrePaciente(dto.getNombrePaciente());
@@ -33,7 +34,7 @@ public class consultasService {
 
     public List<consultas> listarConsultas() {
         return repository.findAll();
-    }
+    } // Devuelve todas las consultas
 
     public consultas buscarPorId(Long id) {
         return repository.findById(id).orElse(null);
@@ -43,9 +44,10 @@ public class consultasService {
         consultas c = buscarPorId(id);
 
         if (c == null) {
-            return null;
+            return null; // Si no existe, retorna un null
         }
 
+        // Actualiza campos de la entidad existente
         c.setNombrePaciente(consulta.getNombrePaciente());
         c.setFichaPaciente(consulta.getFichaPaciente());
         c.setNombreProfesional(consulta.getNombreProfesional());
@@ -54,7 +56,7 @@ public class consultasService {
         c.setFechaConsulta(consulta.getFechaConsulta());
         c.setModalidad(consulta.getModalidad());
 
-        return repository.save(c);
+        return repository.save(c); // Guarda los cambios realizados
     }
 
     public boolean eliminar(Long id) {

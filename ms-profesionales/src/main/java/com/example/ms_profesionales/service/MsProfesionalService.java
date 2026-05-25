@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-@Service
+@Service // Marca la clase como servicio ya que contiene la lógica de negocio
 public class MsProfesionalService {
 
     private final MsProfesionalRepository repository;
@@ -18,7 +18,7 @@ public class MsProfesionalService {
 
     public List<MsProfesional> listarTodos(){
         return repository.findAll();
-    }
+    } // Devuelve todos los profesionales
 
     public Optional<MsProfesional> buscarPorId(Long id){
         return repository.findById(id);
@@ -31,11 +31,12 @@ public class MsProfesionalService {
     public MsProfesional actualizar(Long id, MsProfesional profesional) {
         return repository.findById(id)
                 .map(p -> {
+                    // Actualiza campos de la entidad existente
                     p.setNombre(profesional.getNombre());
                     p.setEspecialidad(profesional.getEspecialidad());
                     p.setCorreo(profesional.getCorreo());
                     p.setTelefono(profesional.getTelefono());
-                    return repository.save(p);
+                    return repository.save(p); // Guarda los cambios realizados
                 })
                 .orElse(null);
     }

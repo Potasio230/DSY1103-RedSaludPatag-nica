@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
+@Service // Marca la clase como servicio ya que  contiene la lógica de negocio
 public class recetasService {
 
     private final recetasRepository repository;
@@ -21,7 +21,7 @@ public class recetasService {
 
     public List<recetas> listarRecetas() {
         return repository.findAll();
-    }
+    } // Devuelve todas las recetas
 
     public recetas buscarPorId(Long id) {
         return repository.findById(id).orElse(null);
@@ -31,9 +31,10 @@ public class recetasService {
         recetas r = buscarPorId(receta.getId());
 
         if (r == null) {
-            return null;
+            return null; // Si no existe retorna null
         }
 
+        // Actualiza los campos de la entidad existente
         r.setIdPaciente(receta.getIdPaciente());
         r.setNombrePaciente(receta.getNombrePaciente());
         r.setIdProfesional(receta.getIdProfesional());
@@ -42,7 +43,7 @@ public class recetasService {
         r.setNombreMedicamentos(receta.getNombreMedicamentos());
         r.setIndicacionesMedicas(receta.getIndicacionesMedicas());
 
-        return repository.save(r);
+        return repository.save(r); // Guarda los cambios
     }
 
     public boolean eliminar(Long id) {

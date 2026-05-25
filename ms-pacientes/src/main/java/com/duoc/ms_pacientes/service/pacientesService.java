@@ -6,41 +6,36 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-// UTILIZAMOS SERVICE PARA LA INYECCIÓN DE DEPENDENCIAS
-@Service
+
+@Service // Marca la clase como servicio ya que contiene la lógica de negocio
 public class pacientesService {
 
-    // LO QUE NOS AYUDARA A CONECTAR CON LA BASE DE DATOS
     private final pacientesRepository repository;
 
-    // CONSTRUCTOR CON INYECCION DE DEPENDENCIAS
     public pacientesService(pacientesRepository repository) {
         this.repository = repository;
     }
 
-    // CREA LA FICHA DEL PACIENTE
     public pacientes crear (pacientes pacientes) {
         return repository.save(pacientes);
     }
 
-    // LISTA A TODOS LOS PACIENTES REGISTRADOS EN LA BASE DE DATOS
     public List<pacientes> listarTodos() {
         return repository.findAll();
-    }
+    } // Devuelve todos los pacientes
 
-    // BUSCA LOS PACIENTES POR SU NÚMERO DE ID
     public pacientes buscarPorId(Long id) {
         return repository.findById(id).orElse(null);
     }
 
-    // ACTUALIZA LA FICHA DE LOS PACIENTES EN CASO DE QUE SEA NECESARIO
     public pacientes actualizar(Long id, pacientes paciente) {
         pacientes p = buscarPorId(id);
 
         if (p == null) {
-            return null;
+            return null; // Si no existe, retorna un null
         }
 
+        // Mapeo manual del DTO a la entidad que asegura que solo campos válidos sean persistentes
         p.setNombre(paciente.getNombre());
         p.setDireccion(paciente.getDireccion());
         p.setResidencia(paciente.getResidencia());
@@ -49,7 +44,7 @@ public class pacientesService {
         p.setTelefono(paciente.getTelefono());
         p.setRut(paciente.getRut());
 
-        return repository.save(p);
+        return repository.save(p); // Guarda los cambios realizados
     }
 
     public boolean eliminar(Long id) {

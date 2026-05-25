@@ -12,17 +12,17 @@ import lombok.NoArgsConstructor;
 public class FarmaciaDTO {
 
 
-    private Long id;
+    private Long id; // Identificador unico del medicamen
 
     @NotBlank(message = "El nombre del medicamento es obligatorio")
-    private String medicamentos;
+    private String medicamentos; // Nombre del medicamento
 
     @PositiveOrZero(message = "El stock no puede ser negativo")
-    private int stockMedicamentos;
+    private int stockMedicamentos; // Stock disponible
 
     @NotBlank(message = "El nombre del encargado es obligatorio")
     @Size(min = 2, max = 50)
-    private String encargadoNombre;
+    private String encargadoNombre; // Encargado de la farmacia
 
     @NotBlank(message = "El télefono de la farmacia es obligatorio")
     private String telefonoFarmacia;

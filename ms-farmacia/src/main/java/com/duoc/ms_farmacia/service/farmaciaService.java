@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
+@Service // Marca la clase como servicio debido a que contiene la lógica de negocio
 public class farmaciaService {
 
     private final farmaciaRepository repository;
@@ -18,6 +18,7 @@ public class farmaciaService {
 
     public farmacia crear(FarmaciaDTO dto) {
         farmacia nueva = new farmacia();
+        // Mapeo manual del DTO a la entidad que asegura que solo campos válidos sean persistentes
         nueva.setId(dto.getId());
         nueva.setMedicamentos(dto.getMedicamentos());
         nueva.setStockMedicamentos(dto.getStockMedicamentos());
@@ -33,7 +34,7 @@ public class farmaciaService {
 
     public List<farmacia> listarMedicamentos() {
         return repository.findAll();
-    }
+    } // Devuelve todos los medicamentos
 
     public farmacia buscarPorId(Long id) {
         return repository.findById(id).orElse(null);
@@ -43,9 +44,10 @@ public class farmaciaService {
         farmacia f = buscarPorId(id);
 
         if (f == null) {
-            return null;
+            return null; // Si no existe, retorna un null
         }
 
+        // Actualiza campos de la entidad existente
         f.setMedicamentos(dto.getMedicamentos());
         f.setStockMedicamentos(dto.getStockMedicamentos());
         f.setEncargadoNombre(dto.getEncargadoNombre());
@@ -54,7 +56,7 @@ public class farmaciaService {
         f.setTelefonoProveedor(dto.getTelefonoProveedor());
         f.setHorarioFarmacia(dto.getHorarioFarmacia());
 
-        return repository.save(f);
+        return repository.save(f); // Guarda los cambios realizados
     }
 
 

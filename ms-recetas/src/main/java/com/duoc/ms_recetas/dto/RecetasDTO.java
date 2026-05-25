@@ -15,9 +15,8 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class RecetasDTO {
 
-    @NotNull
-    @Positive
-    private Long id;
+
+    private Long id; // Identificador unico de la receta
 
     @NotNull
     private LocalDateTime fechaEmision;

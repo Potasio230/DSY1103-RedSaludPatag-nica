@@ -11,50 +11,55 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+//MAPEO DE ENDPOINTS:
+//GET    http://localhost:8082/redsalud/v1/pacientes               -> listar todas
+//GET    http://localhost:8082/redsalud/v1/pacientes/{id}          -> obtener una (404 si no existe)
+//POST    http://localhost:8082/redsalud/v1/pacientes              -> crear (201 Created)
+//PUT     http://localhost:8082/redsalud/v1/pacientes/{id}         -> actualizar
+//DELETE  http://localhost:8082/redsalud/v1/pacientes/{id}         -> eliminar (204 No Content)
 @RestController
-@RequestMapping("/redsalud/v1/pacientes")
+@RequestMapping("/redsalud/v1/pacientes") // Se define la ruta base para todos los endpoints de este controlador
 public class pacientesController {
 
-    private final pacientesService service;
+    private final pacientesService service; // Inyección del servicio que maneja la lógica de negocio
 
     public pacientesController(pacientesService service){
         this.service = service;
     }
 
-    // LISTA A TODOS LOS PACIENTES
     @GetMapping
     public ResponseEntity<?> listarTodos(){
         try {
-            List<pacientes> pacientes = service.listarTodos();
+            List<pacientes> pacientes = service.listarTodos(); // Llama al servicio para obtener los pacientes
             return ResponseEntity.ok()
-                    .body("Pacientes listados correctamente");
+                    .body("Pacientes listados correctamente"); // Devuelve un mensaje de exito
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("Error al listar los pacientes");
+                    .body("Error al listar los pacientes"); // Devuelve mensaje de error
         }
     }
 
-    // BUSCA LA FICHA DEL PACIENTE POR SU ID
     @GetMapping("/{id}")
     public ResponseEntity<?> buscarPorId(@PathVariable Long id){
         try {
-            pacientes pacientes = service.buscarPorId(id);
+            pacientes pacientes = service.buscarPorId(id); // Busca pacientes por ID
 
             if (pacientes == null){
                 return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                        .body("No se encontro el ID del paciente");
+                        .body("No se encontro el ID del paciente"); // 404 si no existe
             }
-            return ResponseEntity.ok().body(pacientes);
+            return ResponseEntity.ok().body(pacientes); // Devuelve el objeto encontrado
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body("Error del servidor");
         }
     }
 
-    // CREA LA FICHA DEL PACIENTE CON LOS CAMPOS QUE SI SON OBLIGATORIOS
     @PostMapping
     public ResponseEntity<?> crear(@RequestBody pacientes paciente){
         try {
+
+            // Validación manual de campos que si son obligatorios
             if (paciente.getNombre() == null ||
                     paciente.getDireccion() == null ||
                     paciente.getTelefono() == null ||
@@ -76,20 +81,19 @@ public class pacientesController {
         }
     }
 
-    // ACTUALIZA LOS DATOS DEL PACIENTE
+
     @PutMapping("/{id}")
     public ResponseEntity<?> actualizar(@PathVariable Long id, @RequestBody pacientes paciente){
-        pacientes actualizado = service.actualizar(id, paciente);
+        pacientes actualizado = service.actualizar(id, paciente); // Actualiza los campos modificados de la entidad
 
         if (actualizado == null){
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body("No se encontro el ID del paciente");
         }
 
-        return ResponseEntity.ok().body(actualizado);
+        return ResponseEntity.ok().body(actualizado); // Devuelve el objeto actualizado
     }
 
-    // EN CASO DE NO ENCONTRAR EL ID DEL PACIENTE, DARA UN ERROR DE NOT FOUND EN LA TERMINAL
     @DeleteMapping("/{id}")
     public ResponseEntity<?> eliminar(@PathVariable Long id){
         boolean eliminado = service.eliminar(id);

@@ -14,11 +14,11 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class ConsultasDTO {
 
-    private Long id;
+    private Long id; // Identificador único de la consulta
 
     @NotBlank(message =  "El nombre del paciente es obligatorio")
     @Size(min = 2, max = 50, message = "El nombre del paciente debe tener entre 2 y 50 caracteres")
-    private String nombrePaciente;
+    private String nombrePaciente; // Acá se asegura de que el usuario ingrese su nombre correctamente
 
     @NotNull(message = "La ficha del paciente es obligatoria")
     @Positive(message = "La ficha del paciente debe ser positiva")

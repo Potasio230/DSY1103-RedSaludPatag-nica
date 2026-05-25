@@ -6,17 +6,18 @@ import java.time.LocalDate;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
-@Table(name = "pacientes")
+@Table(name = "pacientes") // Mapea la clase a la tabla "pacientes"
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 
 public class pacientes {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //Id autoincremental
     private Long id;
 
-    // USAMOS COLUMN PARA DEFINIR LA COLUMNA Y DATOS QUE QUEREMOS INTEGRARLES
+
+    // Usamos colum para definir la columna y datos que queremos integrales
     @Column(name = "nombre", nullable = false, length = 100)
     private String nombre;
 
@@ -26,7 +27,7 @@ public class pacientes {
     @Column(name = "residencia", nullable = false, length = 200)
     private String residencia;
 
-    @JsonFormat(pattern = "dd-MM-yyyy")
+    @JsonFormat(pattern = "dd-MM-yyyy") // Controla formato de fecha en JSON
     private LocalDate fechaNacimiento;
 
     @Column(name = "email", nullable = false, length = 100)
@@ -35,7 +36,7 @@ public class pacientes {
     @Column(name = "telefono", nullable = false, length = 11)
     private String telefono;
 
-    // DENTRO DEL PROYECTO, AL RUT NO SER OBLIGATORIO EN EL FORMULARIO, LO PONEMOS COMO UN VALOR QUE PUEDE SER VACIO
+    // Dentro del proyecto, el rut no puede ser obligatorio en el formulario, lo ponemos como un valor que puede estar vacio
     @Column(name = "rut", nullable = true, length = 10)
     private String rut;
 

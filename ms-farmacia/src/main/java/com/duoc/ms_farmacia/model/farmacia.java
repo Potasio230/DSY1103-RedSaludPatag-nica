@@ -4,14 +4,14 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "farmacia")
+@Table(name = "farmacia") // Mapea la clase a la tabla "farmacia"
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 
 public class farmacia {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // ID autoincremental
     private Long id;
 
     @Column(name = "medicamentos", nullable = false, length = 200)

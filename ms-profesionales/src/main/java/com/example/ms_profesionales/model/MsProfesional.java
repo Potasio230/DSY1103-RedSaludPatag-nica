@@ -9,14 +9,14 @@ import lombok.NoArgsConstructor;
 
 
 @Entity
-@Table(name = "profesionales")
+@Table(name = "profesionales") // Mapea la clase a la tabla "profesionales"
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class MsProfesional {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // ID autoincremental
     private Long id;
 
     @Column(name = "nombre", nullable = false, length = 100)
