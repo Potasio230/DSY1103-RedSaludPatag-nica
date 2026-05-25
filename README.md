@@ -28,14 +28,14 @@ dirección y fecha de nacimiento.
 
 
 ## Microservicios Implementados
-| # | Microservicio      | Puerto | Descripción                                                                                                   |
-|---|--------------------|--------|---------------------------------------------------------------------------------------------------------------|
-| 1 | ms-profesionales   | 8081   | Profesionales capacitados para asistir a los pacientes de manera exitosa.                                     |
-| 2 | ms-pacientes       | 8082   | Usuarios del centro de salud que necesitan de los servicios profesionales.                                    |
-| 3 | ms-recetas         | 8083   | Preinscripciones en base a consultas médicas enfocadas en solventar problemáticas.                            |
-| 4 | ms-consultas       | 8084   | Registro de consultas médicas, presenciales y remotas para los pacientes.                                     |
-| 5 | ms-registro-fichas | 8085   | Fichas clínicas con información de vital importancia, junto con antecedentes médicos.                         |
-| 6 | ms-farmacias       | 8086   | Centro de distribución de medicamentos para los locatarios en base a ms-recetas.                              |
+| # | Microservicio    | Puerto | Descripción                                                                        |
+|---|------------------|--------|------------------------------------------------------------------------------------|
+| 1 | ms-profesionales | 8081   | Profesionales capacitados para asistir a los pacientes de manera exitosa.          |
+| 2 | ms-pacientes     | 8082   | Usuarios del centro de salud que necesitan de los servicios profesionales.         |
+| 3 | ms-recetas       | 8083   | Preinscripciones en base a consultas médicas enfocadas en solventar problemáticas. |
+| 4 | ms-consultas     | 8084   | Registro de consultas médicas, presenciales y remotas para los pacientes.          |
+| 5 | ms-programas     | 8085   | Programas de salud que la institución ofrece a la comunidad.                       |
+| 6 | ms-farmacias     | 8086   | Centro de distribución de medicamentos para los locatarios en base a ms-recetas.   |
 
 
 
@@ -52,5 +52,5 @@ dirección y fecha de nacimiento.
 3. Ejecutar cada microservicio: `./mvnw spring-boot:run`
 
 ## Estado del Proyecto
-🔄 En desarrollo — EP2 2025
+🔄 Finalizado — EP2 2025
 
