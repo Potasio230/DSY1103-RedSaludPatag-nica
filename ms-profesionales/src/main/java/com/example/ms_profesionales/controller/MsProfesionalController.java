@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/profesionales")
+@RequestMapping("/redsalud/v1/profesionales")
 public class MsProfesionalController {
 
     private final MsProfesionalService service;

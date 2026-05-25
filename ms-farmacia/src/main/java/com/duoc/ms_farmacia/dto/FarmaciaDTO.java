@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class FarmaciaDTO {
 
-    @NotNull @Positive
+
     private Long id;
 
     @NotBlank(message = "El nombre del medicamento es obligatorio")
