@@ -3,6 +3,13 @@ package com.duoc.ms_pacientes.controller;
 import com.duoc.ms_pacientes.model.pacientes;
 import com.duoc.ms_pacientes.service.pacientesService;
 
+//Nuevos imports del proyecto
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +26,13 @@ import java.util.List;
 //DELETE  http://localhost:8082/redsalud/v1/pacientes/{id}         -> eliminar (204 No Content)
 @RestController
 @RequestMapping("/redsalud/v1/pacientes") // Se define la ruta base para todos los endpoints de este controlador
+
+//Descripcion general del microservicio
+@Tag(
+        name = "Microservicio de Pacientes",
+        description = "Se encarga de la gestion de los pacientes"
+)
+
 public class pacientesController {
 
     private final pacientesService service; // Inyección del servicio que maneja la lógica de negocio
@@ -27,18 +41,43 @@ public class pacientesController {
         this.service = service;
     }
 
+    @Operation(
+            summary = "Obtiene a todos los pacientes de RedSaludPatagónica",
+            description = "Retorna la lista completa de los pacientes registrados"
+    )
+
+    @ApiResponses({
+            @ApiResponse(responseCode = "200",
+                    description = "Consulta exitosa"),
+            @ApiResponse(responseCode = "500",
+                    description = "Error interno"
+            )
+    })
     @GetMapping
     public ResponseEntity<?> listarTodos(){
         try {
             List<pacientes> pacientes = service.listarTodos(); // Llama al servicio para obtener los pacientes
-            return ResponseEntity.ok()
-                    .body("Pacientes listados correctamente"); // Devuelve un mensaje de exito
+            return ResponseEntity.ok(pacientes); // Devuelve a los pacientes registrados
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body("Error al listar los pacientes"); // Devuelve mensaje de error
         }
     }
 
+    @Operation(
+            summary = "Permite buscar mediante el ID a los pacientes de RedSalud",
+            description = "Retorna al paciente registrado"
+    )
+
+    @ApiResponses({
+            @ApiResponse(responseCode = "200",
+                    description = "Paciente encontrado"),
+            @ApiResponse(responseCode = "404",
+                    description = "Paciente no encontrado"),
+            @ApiResponse(responseCode = "400",
+                    description = "Id inválido"
+            )
+    })
     @GetMapping("/{id}")
     public ResponseEntity<?> buscarPorId(@PathVariable Long id){
         try {
@@ -55,6 +94,19 @@ public class pacientesController {
         }
     }
 
+
+    @Operation(
+            summary = "Registro de un paciente",
+            description = "Permite agregar un nuevo paciente"
+    )
+
+    @ApiResponses({
+            @ApiResponse(responseCode = "201",
+                    description = "Paciente agregado"),
+            @ApiResponse(responseCode = "400",
+                    description = "Datos invalidos"
+            )
+    })
     @PostMapping
     public ResponseEntity<?> crear(@RequestBody pacientes paciente){
         try {
@@ -82,6 +134,20 @@ public class pacientesController {
     }
 
 
+    @Operation(
+            summary = "Actualizar datos de un paciente",
+            description = "Permite modificar los datos de un paciente"
+    )
+
+    @ApiResponses({
+            // 4.1  Response
+            @ApiResponse(responseCode = "200",
+                    description = "Datos del paciente actualizados"),
+            @ApiResponse(responseCode = "404",
+                    description = "Paciente no encontrado"),
+            @ApiResponse(responseCode = "400",
+                    description = "Datos inválidos")
+    })
     @PutMapping("/{id}")
     public ResponseEntity<?> actualizar(@PathVariable Long id, @RequestBody pacientes paciente){
         pacientes actualizado = service.actualizar(id, paciente); // Actualiza los campos modificados de la entidad
@@ -94,6 +160,20 @@ public class pacientesController {
         return ResponseEntity.ok().body(actualizado); // Devuelve el objeto actualizado
     }
 
+
+    @Operation(
+            summary = "Eliminar a un paciente",
+            description = "Permite eliminar a un paciente existente"
+    )
+
+    @ApiResponses({
+            // 4.1  Response
+            @ApiResponse(responseCode = "201",
+                    description = "Paciente eliminado"),
+            @ApiResponse(responseCode = "",
+                    description = "Error al eliminar paciente"
+            )
+    })
     @DeleteMapping("/{id}")
     public ResponseEntity<?> eliminar(@PathVariable Long id){
         boolean eliminado = service.eliminar(id);
